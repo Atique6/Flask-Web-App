@@ -1,47 +1,44 @@
-{% extends "base.html" %} {% block title %}Sign Up{% endblock %} {% block content %}
-<form method="POST">
-  <h3 align="center">Sign Up</h3>
-  <div class="form-group">
-    <label for="email">Email Address</label>
-    <input
-      type="email"
-      class="form-control"
-      id="email"
-      name="email"
-      placeholder="Enter email"
-    />
+{% extends "base.html" %}
+{% block title %}Sign Up | HomeGrid{% endblock %}
+{% block content %}
+<section class="auth-page">
+  <div class="container">
+    <div class="auth-card row no-gutters">
+      <div class="col-lg-6 auth-image signup-image">
+        <div class="auth-image-overlay">
+          <span class="eyebrow light-eyebrow">JOIN HOMEGRID</span>
+          <h2>Make property searching simpler.</h2>
+          <p>Create an account to access a more organized real estate experience.</p>
+        </div>
+      </div>
+      <div class="col-lg-6 auth-form-side">
+        <div class="auth-form-wrapper">
+          <a class="auth-brand" href="/"><i class="fa fa-home"></i> Home<span>Grid</span></a>
+          <h3>Create an Account</h3>
+          <p class="auth-intro">Get started with HomeGrid.</p>
+          <form method="POST">
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" />
+            </div>
+            <div class="form-group">
+              <label for="firstName">First Name</label>
+              <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Enter first name" />
+            </div>
+            <div class="form-group">
+              <label for="password1">Password</label>
+              <input type="password" class="form-control" id="password1" name="password1" placeholder="Enter password" />
+            </div>
+            <div class="form-group">
+              <label for="password2">Confirm Password</label>
+              <input type="password" class="form-control" id="password2" name="password2" placeholder="Confirm password" />
+            </div>
+            <button type="submit" class="btn btn-homegrid btn-block auth-submit">Create Account</button>
+          </form>
+          <p class="auth-switch">Already have an account? <a href="/login">Login</a></p>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="form-group">
-    <label for="firstName">First Name</label>
-    <input
-      type="text"
-      class="form-control"
-      id="firstName"
-      name="firstName"
-      placeholder="Enter first name"
-    />
-  </div>
-  <div class="form-group">
-    <label for="password1">Password</label>
-    <input
-      type="password"
-      class="form-control"
-      id="password1"
-      name="password1"
-      placeholder="Enter password"
-    />
-  </div>
-  <div class="form-group">
-    <label for="password2">Password (Confirm)</label>
-    <input
-      type="password"
-      class="form-control"
-      id="password2"
-      name="password2"
-      placeholder="Confirm password"
-    />
-  </div>
-  <br />
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+</section>
 {% endblock %}

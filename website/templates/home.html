@@ -1,20 +1,99 @@
-{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content%}
-<h1 align="center">Notes</h1>
-<ul class="list-group list-group-flush" id="notes">
-  {% for note in user.notes %}
-  <li class="list-group-item">
-    {{ note.data }}
-    <button type="button" class="close" onClick="deleteNote({{ note.id }})">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </li>
-  {% endfor %}
-</ul>
-<form method="POST">
-  <textarea name="note" id="note" class="form-control"></textarea>
-  <br />
-  <div align="center">
-    <button type="submit" class="btn btn-primary">Add Note</button>
+{% extends "base.html" %}
+{% block title %}HomeGrid | Find Your Next Property{% endblock %}
+{% block content %}
+<section class="hero-section">
+  <div class="container hero-content">
+    <div class="row">
+      <div class="col-lg-8">
+        <span class="eyebrow">REAL ESTATE MADE SIMPLE</span>
+        <h1>Find a property that feels like home.</h1>
+        <p class="hero-subtitle">Search organized property information in one simple place.</p>
+
+        <form class="property-search" action="#" method="GET">
+          <div class="form-row">
+            <div class="col-md-4 mb-2 mb-md-0">
+              <label>Location</label>
+              <input type="text" class="form-control" placeholder="Calgary, AB" name="location" />
+            </div>
+            <div class="col-md-3 mb-2 mb-md-0">
+              <label>Max Price</label>
+              <select class="form-control" name="price">
+                <option>Any price</option><option>$400,000</option><option>$600,000</option>
+                <option>$800,000</option><option>$1,000,000+</option>
+              </select>
+            </div>
+            <div class="col-md-3 mb-2 mb-md-0">
+              <label>Property Type</label>
+              <select class="form-control" name="type">
+                <option>Any type</option><option>Residential</option><option>Commercial</option><option>Land</option>
+              </select>
+            </div>
+            <div class="col-md-2 d-flex align-items-end">
+              <button class="btn btn-homegrid btn-block search-button" type="submit">Search</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
-</form>
+</section>
+
+<section class="featured-section">
+  <div class="container">
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow text-primary">FEATURED LISTINGS</span>
+        <h2>Explore properties</h2>
+      </div>
+      <a href="#" class="view-all-link">View all properties <i class="fa fa-arrow-right"></i></a>
+    </div>
+
+    <div class="row">
+      {% for image, title, location, price, beds, baths, size in [
+        ('property1.jpg', 'Modern Family Home', 'Calgary, AB', '$649,900', '4', '3', '2,150'),
+        ('property2.jpg', 'Contemporary Suburban Home', 'Airdrie, AB', '$529,000', '3', '2', '1,820'),
+        ('property3.jpg', 'Modern Luxury Property', 'Calgary, AB', '$1,195,000', '5', '4', '3,100')
+      ] %}
+      <div class="col-md-4 mb-4">
+        <div class="property-card">
+          <div class="property-image-wrapper">
+            <img src="{{ url_for('static', filename='images/' + image) }}" alt="{{ title }}" />
+            <span class="property-badge">Residential</span>
+          </div>
+          <div class="property-card-body">
+            <h5>{{ title }}</h5>
+            <p class="property-location"><i class="fa fa-map-marker"></i> {{ location }}</p>
+            <div class="property-price">{{ price }}</div>
+            <div class="property-details">
+              <span><i class="fa fa-bed"></i> {{ beds }} Beds</span>
+              <span><i class="fa fa-bath"></i> {{ baths }} Baths</span>
+              <span><i class="fa fa-arrows-alt"></i> {{ size }} sq ft</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="why-section">
+  <div class="container">
+    <div class="text-center mb-5">
+      <span class="eyebrow text-primary">WHY HOMEGRID?</span>
+      <h2>Real estate information in one connected system</h2>
+    </div>
+    <div class="row text-center">
+      <div class="col-md-4 mb-4">
+        <div class="feature-box"><div class="feature-icon"><i class="fa fa-search"></i></div><h5>Simple Property Search</h5><p>Search by useful details such as location, price, and property type.</p></div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="feature-box"><div class="feature-icon"><i class="fa fa-database"></i></div><h5>Organized Information</h5><p>Keep property, customer, realtor, inspection, utility, and transaction data connected.</p></div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="feature-box"><div class="feature-icon"><i class="fa fa-mobile"></i></div><h5>Mobile Friendly</h5><p>Use HomeGrid comfortably on a desktop, tablet, or phone.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
 {% endblock %}
